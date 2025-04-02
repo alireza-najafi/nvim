@@ -14,5 +14,7 @@ map("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", {desc = "window right"})
 map("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", {desc = "window down"})
 map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", {desc = "window up"})
 
-
+map('i', '<C-l>', function ()
+  vim.fn.feedkeys(vim.fn['copilot#Accept'](), '')
+end, { desc = 'Copilot Accept', noremap = true, silent = true })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
