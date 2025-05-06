@@ -40,6 +40,7 @@ return {
         "tailwindcss",
         "eslint",
         "terraform-ls",
+        "svlangserver", -- SystemVerilog and Verilog
       },
     },
   },
