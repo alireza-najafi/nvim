@@ -47,12 +47,31 @@ return {
 
   {
     "lervag/vimtex",
-    lazy = false, -- we don't want to lazy load VimTeX
-    -- tag = "v2.15", -- uncomment to pin to a specific release
+    ft = { "tex" },
     init = function()
-      -- VimTeX configuration goes here, e.g.
-      vim.g.vimtex_view_method = "zathura"
+      -------------------------------------------------
+      -- PDF viewer: use macOS Preview via "general"
+      -------------------------------------------------
+      vim.g.vimtex_view_method = "general"
+      vim.g.vimtex_view_general_viewer = "open"
+      vim.g.vimtex_view_general_options = "-a Preview"
+
+      -------------------------------------------------
+      -- Compiler: latexmk (pdflatex + bibtex)
+      -------------------------------------------------
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_compiler_latexmk = {
+        build_dir = "build",   -- optional: put aux files into ./build
+        continuous = 1,        -- keep watching & recompiling on save
+        executable = "latexmk",
+        options = {
+          "-pdf",              -- use pdflatex -> PDF
+          "-interaction=nonstopmode",
+          "-synctex=1",
+        },
+      }
     end,
+
   },
 
   -- {
